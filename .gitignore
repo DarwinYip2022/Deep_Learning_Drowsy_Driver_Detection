@@ -2,4 +2,8 @@
 *.txt
 *.jpg
 *.h5
+<<<<<<< Updated upstream
 Object_Detection/cnn_tuning/
+=======
+Object_Detection/cnn_tuning/
+>>>>>>> Stashed changes
