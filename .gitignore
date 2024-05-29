@@ -1,0 +1,5 @@
+*.csv
+*.txt
+*.jpg
+*.h5
+cnn_tuning/*
