@@ -3,3 +3,4 @@
 *.jpg
 *.h5
 Object_Detection/cnn_tuning/
+Object_Classifiction/my_dir
