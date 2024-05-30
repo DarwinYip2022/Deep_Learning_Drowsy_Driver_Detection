@@ -7,3 +7,5 @@ Drowsey_Driver_DL_Data
 /Object_Classification/my_dir/random_search
 Object_Detection/detect_model.h5
 Object_Classification/class_model.h5
+/Object_Classification/my_dir_uncropped
+Object_Classification/class_uncropped.h5
