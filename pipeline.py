@@ -3,9 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import tensorflow as tf
+import cv2 as cv
+import numpy as np
+
+
+input_size = 244
 
 # Load your object detection model
-model = tf.keras.models.load_model("Object_Detection/detect_model.h5")
+class_model = tf.keras.models.load_model("Object_Classification/class_model.h5")
 
 # Path to the new image
 new_image_path = "PHOTO-2024-05-29-19-11-53.jpg"
@@ -15,19 +20,22 @@ new_image = cv2.imread(new_image_path)
 if new_image is None:
     print(f"Error: Unable to load image from {new_image_path}")
 else:
-    # Preprocess the new image (resize, normalize, etc.)
-    preprocessed_new_image = cv2.resize(new_image, (244, 244))  # Resize to match the input size of your model
-    
-    # Make prediction on the preprocessed new image
-    prediction = model.predict(preprocessed_new_image)
-    print(prediction)
-    # Extract bounding box coordinates from the prediction
-    x, y, w, h = prediction[0][:4]  # Assuming the first four elements represent bounding box coordinates
 
-    # Draw bounding box on the image
-    cv2.rectangle(new_image, (int(x), int(y)), (int(x + w), int(y + h)), (0, 255, 0), 2)
+    # Load the new image
+    image_path = "/Users/sameeraboppana/Desktop/DL_Project/PHOTO-2024-05-29-19-11-53.jpg" 
+    new_image = cv.imread(image_path)
 
-    # Display the image with bounding box
-    cv2.imshow("Image with Bounding Box", new_image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # Check if the image was loaded successfully
+    if new_image is None:
+        print("Error: Unable to load image.")
+    else:
+        # Preprocess the new image (resize, normalize, etc.)
+        preprocessed_new_image = cv2.resize(new_image, (244, 244))  # Resize to match the input size of your model
+        
+        # Make prediction on the preprocessed new image
+        prediction = class_model.predict(np.expand_dims(preprocessed_new_image, axis=0))
+        
+        # Convert prediction to class label
+        predicted_label = np.argmax(prediction)
+        
+        print("Predicted label for the new image:", predicted_label)

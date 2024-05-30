@@ -4,3 +4,6 @@
 Object_Detection/cnn_tuning/
 Object_Classifiction/my_dir
 Drowsey_Driver_DL_Data
+/Object_Classification/my_dir/random_search
+Object_Detection/detect_model.h5
+Object_Classification/class_model.h5
